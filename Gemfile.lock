@@ -29,6 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   puma (= 6.4.3)
+  rack
   sinatra (= 4.0.0)
 
 RUBY VERSION

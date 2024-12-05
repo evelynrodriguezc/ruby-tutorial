@@ -20,14 +20,16 @@ p imperative_urls(states)
 
 #urls: Functional version
 def functional_urls(states)
-    states.map { |state| urlify(state) }
+    states.collect { |state| urlify(state) }
+    #states.map { |state| urlify(state) }
 end
 
 p functional_urls(states)
 
 # Returns a full URL for each state.
 def full_urls(states)
-    states.map { |state| "https://example.com/#{urlify(state)}" }
+    states.collect { |state| "https://example.com/#{urlify(state)}" }
+    #states.map { |state| "https://example.com/#{urlify(state)}" }
 end
 
 p full_urls(states)
@@ -49,7 +51,8 @@ p imperative_singles(states)
 
 # singles: Functional version
 def functional_singles(states)
-    states.select { |state| state.split.length == 1 }
+    states.reject { |state| state.split.length == 1 }
+    #states.select { |state| state.split.length == 1 }
 end
 
 p functional_singles(states)
@@ -68,12 +71,12 @@ end
 p double_states(states)
 
 
-numbers = 1..10
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 # sum: Imperative version
 def imperative_sum(numbers)
     total = 0
-    numbers.each do |n| 
+    numbers.each do |n|
         total += n
     end
     total
@@ -83,7 +86,51 @@ puts imperative_sum(numbers)
 
 # sum: Functional version
 def functional_sum(numbers)
-    numbers.reduce { |total, n| total + n }
+    numbers.inject { |total, n| total + n }
+    #numbers.reduce { |total, n| total + n }
 end
 
 puts functional_sum(numbers)
+
+
+# lengths: Imperative version
+def imperative_lengths(states)
+    lengths = {}
+    states.each do |state|
+        lengths[state] = state.length
+    end
+    lengths
+end
+
+puts imperative_lengths(states)
+
+
+# lengths: Functional version
+def functional_lengths(states)
+    states.inject({}) do |lengths, state| # you can use inject or reduce
+    #states.reduce({}) do |lengths, state|
+        lengths[state] = state.length;
+        lengths
+    end
+end
+
+puts functional_lengths(states)
+
+# multiplitacion: Imperative version
+def imperative_multiplication(numbers)
+    total = 1
+    numbers.each do |n|
+        total *= n
+    end
+    total
+end
+
+puts imperative_multiplication(numbers)
+
+# multiplitacion: Functional version
+def functional_multiplication(numbers)
+    numbers.inject { |total, n| total * n }
+    #numbers.reduce { |total, n| total * n }
+end
+
+puts functional_multiplication(numbers)

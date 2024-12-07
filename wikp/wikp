@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require "open-uri"
+
+# Returns the paragraphs from a URL link, stripped of reference numbers.
+# Especially useful for text-to-speech (both native and foreign).
+
+# Read URL
+url = ARGV[0]
+
+# Parse with Nokogiri
+doc = Nokogiri::HTML(URI.open(url))
+
+# Remove reference numbers
+
+
+# Collect and print paragraph content
+
